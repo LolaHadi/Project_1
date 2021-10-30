@@ -1,8 +1,17 @@
-//
-//  StringToDate.swift
-//  Project1
-//
-//  Created by Lola M on 10/26/21.
-//
-
 import Foundation
+
+func stringToDate(_ string: String) -> Date? {
+    let formatter = DateFormatter()
+    formatter.timeZone = .current
+    formatter.locale    = .current
+    formatter.dateFormat = "dd-MM-yyyy"
+    return formatter.date(from: string)
+}
+
+func formateDate(_ date: Date) -> String {
+    let formatter           = DateFormatter()
+    formatter.timeZone      = .current
+    formatter.locale        = .current
+    formatter.dateFormat    = "dd-MM-yyyy"
+    return formatter.string(from: date)
+}
