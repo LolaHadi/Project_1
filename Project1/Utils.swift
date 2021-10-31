@@ -1,7 +1,7 @@
 import Foundation
 
 class Utils {
-
+    
     static func readInt() -> Int {
         return Int(readLine()!)!
     }
@@ -17,5 +17,4 @@ class Utils {
     static func readString() -> String {
         return readLine()!
     }
-    
 } 
