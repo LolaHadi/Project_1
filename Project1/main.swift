@@ -14,6 +14,7 @@ while (mainUserInput != 0) {
     switch userInputSelection {
     case 1:
         UserList.ViewUserList()
+        print("\n")
     case 2:
         UserList.CreateNewToDo()
     case 0:

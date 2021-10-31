@@ -15,13 +15,42 @@ class ToDo {
         self.done = done
     }
     
-//    init(index: Int, title: String, description: String, done: Bool) {
-//        self.index = index
-//        self.title = title
-//        self.description = description
-//        self.done = done
-//    }
+    static func SelectToDo(index: Int) -> ToDo {
+        let userInputIndix = Utils.readInt()
+        let currentToDo = UserList.toDoList[userInputIndix - 1]
+        return currentToDo
+    }
     
+    static func OperationsOnToDo() {
+        
+        print("Please Select a ToDo By Typing Its Index Number, Index Number is First Number From The Left in Single ToDo Row")
+        let indx = Utils.readInt()
+        let selectedToDo = SelectToDo(index: indx)
+        
+        print("Your Selected ToDo is\(selectedToDo)/n")
+        print("1\t To Mark a ToDo As Done")
+        print("2\t To Mark a ToDo As (Not) Done")
+        print("3\t To Delete a ToDo")
+        print("9\t To Go back to Main Menu")
+        print("0\t To End The Program")
+        print("\n\n")
+
+        switch Utils.readInt() {
+        case 1:
+            ToDo.MarkAsDone(index: indx)
+        case 2:
+            ToDo.MarkAsNotDone(index: indx)
+        case 3:
+            UserList.DeleteToDo(index: indx)
+            UserList.ViewUserList()
+            print("\n^\nAbove is Your ToDo List After Modification")
+        case 9:
+            break
+        default:
+            print("Invalid Input!")
+            break
+        }
+    }
     
     static func MarkAsDone(index: Int) {
         if !UserList.toDoList[index - 1].done {
@@ -74,3 +103,4 @@ class ToDo {
         print("\nAbove is Your List of Tasks After Modification")
     }
 }
+

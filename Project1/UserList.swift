@@ -3,16 +3,22 @@ import Foundation
 
 class UserList {
     
-    static var toDoList = [ToDo]()
+    var toDoList: [ToDo]
     static var userInput = -1
+    
+    init(toDoList: [ToDo]) {
+        self.toDoList = toDoList
+    }
+    
     
     static func ViewUserList() {
         var index = -1
+        let currentList: [ToDo]
         
         while index != 0 {
             
-            if UserList.toDoList.isEmpty {
-                print("Oops! Your ToDo List is Empty Right Now")
+            if currentList.isEmpty {
+                print("Your ToDo List is Empty Right Now!")
                 print("1 \tTo Create Your First ToDo")
                 print("9 \tTo Go Back To The Main Menu")
                 print("0 \tTo End Program")
@@ -31,48 +37,22 @@ class UserList {
                     print("Invalid Input!")
                 }
                 
-                for i in UserList.toDoList {
-                    print("\(i.index).\t\(i.title),\t\(i.description),\t\(String(describing: i.deadline)),\t\(i.done)")
+                for i in currentList {
+                    print("\(i.index).\t\(i.title),\t\(i.description),\t\(String(describing: i.deadline)),\t\(i.done ? "Done": "Not Done Yet")")
                     index += 1
                 }
-            } else {
+
                 print("\n")
                 print("Above is Your List of Tasks")
                 print("1 \tTo Do Some Operations On Your List")
                 print("2 \tTo Add New ToDo")
                 print("9 \tTo Go Back To The Main Menu")
                 print("0 \tTo End Program")
-            }
-                userInput = Utils.readInt()
+
         }
-                switch userInput {
+                switch Utils.readInt() {
                 case 1:
-                    print("Please Select a ToDo By Typing Its Index Number")
-                    let userInputIndix = Utils.readInt()
-                    let currentToDo = UserList.toDoList[userInputIndix - 1]
-                    
-                    print("Your Selected ToDo is\(currentToDo), \nNow Choose The Operation You Want To Do From The Following: ")
-                    print("\n1\t To Mark a ToDo As Done")
-                    print("2\t To Mark a ToDo As (Not) Done")
-                    print("3\t To Delete a ToDo")
-                    print("9\t To Go back to Main Menu")
-                    print("0\t To Close And Exit The Program")
-                    print("\n\n")
-                    
-                    switch Utils.readInt() {
-                    case 1:
-                        ToDo.MarkAsDone(index: userInputIndix)
-                    case 2:
-                        ToDo.MarkAsNotDone(index: userInputIndix)
-                    case 3:
-                        DeleteToDo(index: userInputIndix)
-                        ViewUserList()
-                        print("\n^\nAbove is Your ToDo List After Modification")
-                    case 9:
-                        break
-                    default:
-                        print("Invalid Input!")
-                    }
+                    ToDo.OperationsOnToDo()
                 case 2:
                     CreateNewToDo()
                 case 9:
@@ -81,16 +61,20 @@ class UserList {
                     print("Invalid Input!")
                 }
             }
+    }
     
     static func CreateNewToDo() {
         
-        let currentTodo = ToDo()
+        let currentTodo: ToDo
         print("\n")
         var x = 1
         
         while x == 1 {
             print("Enter Task Title (30 Letters): ", terminator: "")
-            var currentTitle = Utils.readString()
+            
+            var currentTitle = currentTodo.title
+            currentTitle = Utils.readString()
+            
             if currentTitle.count <= 30 {
                 currentTodo.title = currentTitle
                 x = 0
@@ -115,7 +99,7 @@ class UserList {
         }
         
             print("Enter Deadline in This Format dd-MM-yyyy")
-            print("1 \tTos Skip")
+            print("1 \tTo Skip")
 //            let currentDate = Date()
             let currentDeadLine = Utils.readInt()
             switch currentDeadLine {
@@ -141,15 +125,15 @@ class UserList {
 //            }
             
             print("\n")
-            print("Your New ToDo is: ")
-            print("\(currentTodo), \n")
+            print("Your Enterd ToDo is: \t \(currentTodo)")
             print("1 \tTo Save")
-            print("2 \tTo Re-fill")
+            print("2 \tTo Re-enter It")
             print("3 \tTo Cancel")
             
             switch Utils.readInt() {
             case 1:
-                UserList.toDoList.append(currentTodo)
+                toDoList.append(currentTodo)
+                ViewUserList()
             case 2:
                 CreateNewToDo()
             case 3:
@@ -161,6 +145,6 @@ class UserList {
         }
     
     static func DeleteToDo(index: Int) {
-        UserList.toDoList.remove(at: index)
+        self.toDoList.remove(at: index)
     }
 }
