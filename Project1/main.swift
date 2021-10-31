@@ -1,7 +1,7 @@
 import Foundation
 
-var userInput: Int = -1
-while (userInput != 0) {
+public var mainUserInput: Int = -1
+while (mainUserInput != 0) {
     print("Welcom to (Manage My Brain Program) \nPlease Type The Number That Corresponds To The Option You Want, And Then Click (Enter) From The Keyboard to Continue. \n")
     
     print("1 \t To View Your ToDo List")
@@ -16,6 +16,8 @@ while (userInput != 0) {
         UserList.ViewUserList()
     case 2:
         UserList.CreateNewToDo()
+    case 0:
+        mainUserInput = 0
     default:
         print("Error Message: Invalid Input, Please Enter (1) To View Your List of Tasks, Or (2) to Create a New ToDo, Or (0) To Close and Exit the Program")
     }

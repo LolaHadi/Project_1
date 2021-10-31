@@ -15,12 +15,12 @@ class ToDo {
         self.done = done
     }
     
-    init(index: Int, title: String, description: String, done: Bool) {
-        self.index = index
-        self.title = title
-        self.description = description
-        self.done = done
-    }
+//    init(index: Int, title: String, description: String, done: Bool) {
+//        self.index = index
+//        self.title = title
+//        self.description = description
+//        self.done = done
+//    }
     
     
     static func MarkAsDone(index: Int) {
@@ -31,7 +31,7 @@ class ToDo {
             print("1 \tTo Back To Your ToDo List")
             print("9 \tTo Back To The Main Menu")
             print("0 \tTo Exit and Close The Program")
-            print("1\n\n")
+            print("\n")
             while Utils.readInt() != 0 {
                 switch Utils.readInt() {
                 case 1:
@@ -45,18 +45,19 @@ class ToDo {
         }
         
         UserList.ViewUserList()
-        print("\n^\nAbove is Your List of Tasks After Modification")
+        print("\nAbove is Your List of Tasks After Modification")
     }
     
     static func MarkAsNotDone(index: Int) {
         if UserList.toDoList[index - 1].done {
             UserList.toDoList[index - 1].done = false
+            print("\(UserList.toDoList[index - 1].done ? "Done" : "Not Done")")
         } else {
             print("This ToDo is Already Marked As Not Done!")
             print("1 \tTo Back To Your ToDo List")
             print("9 \tTo Back To The Main Menu")
             print("0 \tTo Exit and Close The Program")
-            print("1\n\n")
+            print("\n")
             while Utils.readInt() != 0 {
                 switch Utils.readInt() {
                 case 1:
@@ -70,6 +71,6 @@ class ToDo {
         }
         
         UserList.ViewUserList()
-        print("\n^\nAbove is Your List of Tasks After Modification")
+        print("\nAbove is Your List of Tasks After Modification")
     }
 }
