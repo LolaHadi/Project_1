@@ -7,8 +7,6 @@ class UserList {
     static var userInput = -1
     
     static func ViewUserList() {
-        
-//        let userInput = Utils.readInt()
         var x = 1
         while x != 0 {
             
