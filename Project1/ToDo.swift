@@ -20,9 +20,8 @@ class ToDo {
     }
     
     static func OperationsOnToDo() {
-        var x = 1
-        while x != 0 {
-        print("Please Select a ToDo By Typing Its Index Number, Index Number is First Number From The Left in Single ToDo Row\n\n")
+        
+        print("Please Select a ToDo By Typing Its Index Number, Index Number is First Number From The Left in Single ToDo Row\n")
         let indx = Utils.readInt()
         let selectedToDo = SelectToDo(index: indx)
         
@@ -34,45 +33,54 @@ class ToDo {
         print("0\t To End The Program")
         print("\n\n")
         
-        switch Utils.readInt() {
-        case 1:
-            ToDo.MarkAsDone(index: indx)
-            UserList.ViewUserList()
-        case 2:
-            ToDo.MarkAsNotDone(index: indx)
-            UserList.ViewUserList()
-        case 3:
-            UserList.DeleteToDo(index: indx)
-            UserList.ViewUserList()
-        case 9:
-            x = 0
-            break
-        case 0:
-            mainUserInput = 0
-            x = 0
-            break
-        default:
-            print("Invalid Input!")
+        var x = 1
+        while x != 0 {
+            switch indx {
+            case 1:
+//                MarkAsDone(index: indx)
+                UserList.ViewUserList()
+            case 2:
+                MarkAsNotDone(index: indx)
+                UserList.ViewUserList()
+            case 3:
+                UserList.DeleteToDo(index: indx)
+                UserList.ViewUserList()
+            case 9:
+                x = 0
+                break
+            case 0:
+                x = 0
+                mainUserInput = 0
+                break
+            default:
+                print("Invalid Input!")
+            }
         }
     }
-    }
     
-    static func MarkAsDone(index: Int) {
-        if !UserList.toDoList[index - 1].done {
-            UserList.toDoList[index - 1].done = true
+    
+    static func MarkAsNotDone(index: Int) {
+        let userInput = Utils.readInt()
+        
+        if UserList.toDoList[index - 1].done {
+            UserList.toDoList[index - 1].done.toggle()
         } else {
             print("This ToDo is Already Marked As Done!\n")
             print("1 \tTo Back To Your ToDo List")
             print("9 \tTo Back To The Main Menu")
             print("0 \tTo Exit and Close The Program")
             print("\n")
-            while Utils.readInt() != 0 {
-                switch Utils.readInt() {
+            
+            var x = 1
+            while x != 0 {
+                switch userInput {
                 case 1:
                     UserList.ViewUserList()
                 case 9:
+                    x = 0
                     break
                 case 0:
+                    x = 0
                     mainUserInput = 0
                     break
                 default:
@@ -80,35 +88,8 @@ class ToDo {
                 }
             }
         }
-        
         print("\n")
         UserList.ViewUserList()
         print("Above is Your List of Tasks After Modification")
-    }
-    
-    static func MarkAsNotDone(index: Int) {
-        if UserList.toDoList[index - 1].done {
-            UserList.toDoList[index - 1].done = false
-            print("\(UserList.toDoList[index - 1].done ? "Done" : "Not Done")")
-        } else {
-            print("This ToDo is Already Marked As Not Done!")
-            print("1 \tTo Back To Your ToDo List")
-            print("9 \tTo Back To The Main Menu")
-            print("0 \tTo Exit and Close The Program")
-            print("\n")
-            while Utils.readInt() != 0 {
-                switch Utils.readInt() {
-                case 1:
-                    UserList.ViewUserList()
-                case 9:
-                    break
-                default:
-                    print("Invalid Input")
-                }
-            }
-        }
-        
-        UserList.ViewUserList()
-        print("\nAbove is Your List of Tasks After Modification")
     }
 }

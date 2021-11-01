@@ -7,8 +7,10 @@ class UserList {
     static var userInput = -1
     
     static func ViewUserList() {
-        var index = -1
-        while index != 0 {
+        
+//        let userInput = Utils.readInt()
+        var x = 1
+        while x != 0 {
             
             if toDoList.isEmpty {
                 print("Your ToDo List is Empty Right Now!")
@@ -16,16 +18,16 @@ class UserList {
                 print("9 \tTo Go Back To The Main Menu")
                 print("0 \tTo End Program")
                 
-                let userInput = Utils.readInt()
-                switch userInput {
+                switch Utils.readInt() {
                 case 1:
                     CreateNewToDo()
                 case 9:
-                    print("\n")
-                    index = 0
+                    x = 0
+                    break
                 case 0:
-                    index = 0
+                    x = 0
                     mainUserInput = 0
+                    break
                 default:
                     print("Invalid Input!")
                 }
@@ -52,9 +54,10 @@ class UserList {
                 case 2:
                     CreateNewToDo()
                 case 9:
-                    index = 0
+                    x = 0
                     break
                 case 0:
+                    x = 0
                     mainUserInput = 0
                     break
                 default:
@@ -63,6 +66,8 @@ class UserList {
             }
         }
     }
+    
+    
     
     static func CreateNewToDo() {
         let currentTodo = ToDo(title: "", description: "", deadline: nil, done: false)
@@ -98,11 +103,11 @@ class UserList {
             }
         }
         
-        x = 1
         print("Enter Deadline in This Format dd-MM-yyyy")
         print("1 \tTo Skip")
         let currentDeadLine = Utils.readString()
         if let currentDeadlineDate = stringToDate(currentDeadLine) {
+            x = 1
             while x == 1 {
                 if currentDeadlineDate > Date() {
                     currentTodo.deadline = currentDeadlineDate
@@ -143,6 +148,7 @@ class UserList {
             break
         }
     }
+    
     
     static func DeleteToDo(index: Int) {
         toDoList.remove(at: index - 1)
