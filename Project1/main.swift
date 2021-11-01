@@ -2,8 +2,8 @@ import Foundation
 
 public var mainUserInput: Int = -1
 while (mainUserInput != 0) {
-    print("Welcom to (Manage My Brain Program) \nPlease Type The Number That Corresponds To The Option You Want, And Then Click (Enter) From The Keyboard to Continue. \n")
     
+    print("\n\nWelcom to (Manage My Brain Program) \nPlease Type The Number That Corresponds To The Option You Want, And Then Click (Enter) From The Keyboard to Continue. \n")
     print("1 \t To View Your ToDo List")
     print("2 \t To Add a New ToDo")
     print("0 \t To Exit & Close The Program")

@@ -1,14 +1,13 @@
 import Foundation
 
 class ToDo {
-    var index: Int
+    
     var title: String
     var description: String
     var deadline: Date?
     var done: Bool = false
     
-    init(index: Int, title: String, description: String, deadline: Date?, done: Bool) {
-        self.index = index
+    init(title: String, description: String, deadline: Date?, done: Bool) {
         self.title = title
         self.description = description
         self.deadline = deadline
@@ -16,8 +15,7 @@ class ToDo {
     }
     
     static func SelectToDo(index: Int) -> ToDo {
-        let userInputIndix = Utils.readInt()
-        let currentToDo = UserList.toDoList[userInputIndix - 1]
+        let currentToDo = UserList.toDoList[index - 1]
         return currentToDo
     }
     
@@ -34,8 +32,8 @@ class ToDo {
         print("9\t To Go back to Main Menu")
         print("0\t To End The Program")
         print("\n\n")
-
-        switch Utils.readInt() {
+        
+        switch indx {
         case 1:
             ToDo.MarkAsDone(index: indx)
         case 2:
@@ -73,8 +71,9 @@ class ToDo {
             }
         }
         
+        print("\n")
         UserList.ViewUserList()
-        print("\nAbove is Your List of Tasks After Modification")
+        print("Above is Your List of Tasks After Modification")
     }
     
     static func MarkAsNotDone(index: Int) {
@@ -103,4 +102,3 @@ class ToDo {
         print("\nAbove is Your List of Tasks After Modification")
     }
 }
-

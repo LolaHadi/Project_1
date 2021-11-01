@@ -2,7 +2,7 @@ import Foundation
 
 func stringToDate(_ string: String) -> Date? {
     let formatter = DateFormatter()
-    formatter.timeZone = .current
+    formatter.timeZone = .init(abbreviation: "GMT")
     formatter.locale    = .current
     formatter.dateFormat = "dd-MM-yyyy"
     return formatter.date(from: string)
