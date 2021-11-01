@@ -36,7 +36,7 @@ class UserList {
                     if let date = todo.deadline {
                         deadlineString = formateDate(date)
                     }
-                    print("\(i + 1).\t\(todo.title)\t\(todo.description)\t\(deadlineString ?? " ")\t\(todo.done ? "Done": "Not Done Yet")")
+                    print("\(i + 1).\t\(todo.title)\t\(todo.description)\t\(deadlineString ?? " ")\t\(todo.done ? "Done": "NotDone")")
                 }
                 
                 print("\n")
@@ -53,6 +53,9 @@ class UserList {
                     CreateNewToDo()
                 case 9:
                     index = 0
+                    break
+                case 0:
+                    mainUserInput = 0
                     break
                 default:
                     print("Invalid Input!")
@@ -117,12 +120,12 @@ class UserList {
             }
             
         } else {
-            print("Invalid Input")
+            print("")
         }
         
         
         print("\n")
-        print("Your Enterd ToDo is: \t \(currentTodo.title) \(currentTodo.description) \(currentTodo.done)")
+        print("Your Enterd ToDo is: \t\(currentTodo.title)\t\(currentTodo.description)\t\(currentTodo.deadline)\t\(currentTodo.done ? "Done": "NotDone")")
         print("1 \tTo Save")
         print("2 \tTo Re-enter It")
         print("3 \tTo Cancel\n")
@@ -142,6 +145,6 @@ class UserList {
     }
     
     static func DeleteToDo(index: Int) {
-        toDoList.remove(at: index)
+        toDoList.remove(at: index - 1)
     }
 }

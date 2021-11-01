@@ -20,12 +20,13 @@ class ToDo {
     }
     
     static func OperationsOnToDo() {
-        
-        print("Please Select a ToDo By Typing Its Index Number, Index Number is First Number From The Left in Single ToDo Row")
+        var x = 1
+        while x != 0 {
+        print("Please Select a ToDo By Typing Its Index Number, Index Number is First Number From The Left in Single ToDo Row\n\n")
         let indx = Utils.readInt()
         let selectedToDo = SelectToDo(index: indx)
         
-        print("Your Selected ToDo is\(selectedToDo)/n")
+        print("Your Selected ToDo is\(selectedToDo)\n")
         print("1\t To Mark a ToDo As Done")
         print("2\t To Mark a ToDo As (Not) Done")
         print("3\t To Delete a ToDo")
@@ -33,21 +34,27 @@ class ToDo {
         print("0\t To End The Program")
         print("\n\n")
         
-        switch indx {
+        switch Utils.readInt() {
         case 1:
             ToDo.MarkAsDone(index: indx)
+            UserList.ViewUserList()
         case 2:
             ToDo.MarkAsNotDone(index: indx)
+            UserList.ViewUserList()
         case 3:
             UserList.DeleteToDo(index: indx)
             UserList.ViewUserList()
-            print("\n^\nAbove is Your ToDo List After Modification")
         case 9:
+            x = 0
+            break
+        case 0:
+            mainUserInput = 0
+            x = 0
             break
         default:
             print("Invalid Input!")
-            break
         }
+    }
     }
     
     static func MarkAsDone(index: Int) {
@@ -64,6 +71,9 @@ class ToDo {
                 case 1:
                     UserList.ViewUserList()
                 case 9:
+                    break
+                case 0:
+                    mainUserInput = 0
                     break
                 default:
                     print("Invalid Input")
